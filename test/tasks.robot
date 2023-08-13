@@ -7,7 +7,7 @@ Library    OperatingSystem
 Library    RPA.FileSystem
 
 *** Variables ***
-${repo}                  https://github.com/MamadouKernel/test_rpa.git
+${repo}                  https://github.com/MamadouKernel/rpa_test.git
 ${initialisation}        git init
 ${remote}                git remote add origin ${repo}
 ${branch}                TB-01
@@ -40,3 +40,7 @@ Minimal task
     ${chemin}    Absolute Path    path=tach
     Create File    path=tach/test.txt    content=Hello World
     Initialisations    ${chemin}
+    ${files}   Get File    path=tach/test.txt
+    Run    command=git add ${files}
+    Run    command=git commit -m "ajout des fichiers"
+    Run    command=git push origin master
